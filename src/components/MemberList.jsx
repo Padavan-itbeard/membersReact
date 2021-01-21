@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Member from './Member';
 import propTypes from 'prop-types';
+import { css } from '@emotion/react';
 
 const getFakeMembers = count => new Promise((resolves, rejects) => {
   const api = `https://api.randomuser.me/?nat=US&results=${count}`
@@ -36,14 +37,19 @@ export default class MemberList extends Component {
   render() {
     const { members, loading, error } = this.state
     return (
-      <div className="member-list">
-        {(loading) ?
-          <span>Loading Members</span> :
-          (members.length) ?
-            members.map((user, i) =>
+      <div 
+        css={css`
+          display: flex;
+          flex-wrap: wrap;
+        `}
+      >
+        {(loading) 
+          ? <span>Loading Members</span> 
+          : (members.length) 
+            ? members.map((user, i) =>
               <Member key={i} {...user} />
-            ) :
-            <span>0 members loaded...</span>
+              ) 
+            : <span>0 members loaded...</span>
         }
         {(error) ? <p>Error Loading Members: error</p> : ""}
       </div>

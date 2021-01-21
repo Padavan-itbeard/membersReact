@@ -1,11 +1,44 @@
 import propTypes from 'prop-types';
+import { css } from '@emotion/react';
+
 
 const Member = ({ email, picture, name, location }) =>
-  <div className="member">
-    <img src={picture.thumbnail} alt="" />
-    <h1>{name.first} {name.last}</h1>
-    <p><a href={"mailto:" + email}>{email}</a></p>
-    <p>{location.city}, {location.state}</p>
+  <div
+    css={css`
+      flex-basis: calc(25% - 2px - 0.5em);
+      @media screen and (max-width: 1200px) {
+        flex-basis: calc(33.3334% - 2px - 0.5em);
+      }
+      @media screen and (max-width: 800px) {
+        flex-basis: calc(50% - 2px - 0.5em);
+      }
+      @media screen and (max-width: 500px) {
+        flex-basis: calc(100% - 2px - 0.5em);
+      }
+      margin: 0.25em;
+      border: 1px solid #ededed;
+    `}
+  >
+    <div
+      css={css`
+        display: flex;
+      `}
+    > 
+      <div>
+        <img src={picture.large} alt="" />
+      </div>
+      <div css={css`
+        flex-grow: 1;
+        text-align: center;
+        h1 {
+          margin: 10px;
+        }
+      `}>
+        <h1>{name.first} {name.last}</h1>
+        <p><a href={"mailto:" + email}>{email}</a></p>
+        <p>{location.city}, {location.state}</p>
+      </div>
+    </div>
   </div>
 
 export default Member;
