@@ -17,6 +17,7 @@ const Member = ({ email, picture, name, location }) =>
       }
       margin: 0.25em;
       border: 1px solid #ededed;
+      background-color: #d7d7d7;
     `}
   >
     <div
@@ -24,15 +25,12 @@ const Member = ({ email, picture, name, location }) =>
         display: flex;
       `}
     > 
-      <div>
+      <div css={css`display: flex; flex-direction: column; height: 100%;`}>
         <img src={picture.large} alt="" />
       </div>
       <div css={css`
         flex-grow: 1;
         text-align: center;
-        h1 {
-          margin: 10px;
-        }
       `}>
         <h1>{name.first} {name.last}</h1>
         <p><a href={"mailto:" + email}>{email}</a></p>
